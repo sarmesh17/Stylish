@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:stylish/screens/on_boarding_screen/components/page_view_indicator.dart';
+import 'package:stylish/util/app_fonts.dart';
 
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({super.key});
@@ -33,16 +33,16 @@ class OnBoardingScreen extends StatelessWidget {
               Text(
                 '1',
                 style: TextStyle(
-                  fontFamily: "Montserrat-ExtraBold",
+                  fontFamily: AppFonts.montserrat,
                   fontWeight: FontWeight.bold,
-                  fontSize: 25,
+                  fontSize: 23,
                 ),
               ),
 
               Text(
                 '/3',
                 style: TextStyle(
-                  fontFamily: "Montserrat-ExtraBold",
+                  fontFamily: AppFonts.montserrat,
                   fontWeight: FontWeight.bold,
                   fontSize: 25,
                   color: Colors.grey,
@@ -69,7 +69,7 @@ class OnBoardingScreen extends StatelessWidget {
                   'Choose Products',
                   style: TextStyle(
                     fontSize: 29,
-                    fontFamily: 'Montserrat-ExtraBold',
+                    fontFamily: AppFonts.montserrat,
                     fontWeight: FontWeight.w900,
                   ),
                 ),
@@ -79,8 +79,9 @@ class OnBoardingScreen extends StatelessWidget {
                   'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.',
                   style: TextStyle(
                     fontSize: 14,
-                    fontFamily: 'Montserrat-ExtraBold',
-                    letterSpacing: 2.5,
+                    fontFamily: AppFonts.montserrat,
+                    letterSpacing: 1.5,
+                    color: Colors.grey,
                   ),
                   textAlign: TextAlign.center,
                 ),
