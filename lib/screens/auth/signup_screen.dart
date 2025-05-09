@@ -6,16 +6,16 @@ import 'package:stylish/util/app_fonts.dart';
 
 final isVisibleProvider = StateProvider((ref) => false);
 
-class LoginScreen extends ConsumerWidget {
-  LoginScreen({super.key});
-
+class SignupScreen extends ConsumerWidget {
   final email = TextEditingController();
   final password = TextEditingController();
+
+  SignupScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var isVisible = ref.watch(isVisibleProvider);
-    final authState= ref.watch(authRepoProvider);
+    final authState=ref.watch(authRepoProvider);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -26,11 +26,11 @@ class LoginScreen extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Welcome",
+                "Create an",
                 style: TextStyle(fontSize: 36, fontFamily: AppFonts.montserrat),
               ),
               Text(
-                "Back!",
+                "account",
                 style: TextStyle(fontSize: 36, fontFamily: AppFonts.montserrat),
               ),
 
@@ -116,30 +116,71 @@ class LoginScreen extends ConsumerWidget {
                 ),
               ),
 
-              SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(
-                    "Forgot Password?",
-                    style: TextStyle(
-                      fontFamily: AppFonts.montserrat_regular,
-                      color: Colors.redAccent,
+              SizedBox(height: 32),
+
+              // confirm-password text-field
+              TextField(
+                controller: password,
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(vertical: 20.0),
+                  hintText: 'ConfirmPassword',
+                  filled: true,
+                  fillColor: AppColors.grey,
+                  prefixIcon: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Image.asset(
+                      'assets/images/lock.png',
+                      width: 24,
+                      height: 24,
                     ),
                   ),
-                ],
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      isVisible =
+                          ref.read(isVisibleProvider.notifier).state =
+                              !isVisible;
+                    },
+                    icon: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Image.asset(
+                        isVisible
+                            ? 'assets/images/visibility_eye.png'
+                            : 'assets/images/off_visibility_eye.png',
+                        width: 24,
+                        height: 24,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                ),
               ),
 
-              // Login Button
+              SizedBox(height: 16),
+
+              Text(
+                'By clicking the Register button, you agree\n to the public offer',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontFamily: AppFonts.montserrat_regular,
+                  color: Colors.grey,
+                ),
+              ),
+
+              // Signup Button
               SizedBox(height: 78),
               ElevatedButton(
-                onPressed: () async{
-                  final result= await authState.signIn(email.text, password.text);
-
-                  if(result != null){
-
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(result)));
-                  }
+                onPressed: () {
+                  authState.signUp(email.text, password.text);
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(double.infinity, 60),
@@ -150,7 +191,7 @@ class LoginScreen extends ConsumerWidget {
                   foregroundColor: Colors.white,
                 ),
                 child: Text(
-                  "Login",
+                  "Create Account",
                   style: TextStyle(
                     fontFamily: AppFonts.montserrat_regular,
                     fontSize: 18,
@@ -168,15 +209,10 @@ class LoginScreen extends ConsumerWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          GestureDetector(
-                            onTap: (){
-                              authState.signInWithGoogle();
-                            },
-                            child: Image.asset(
-                              'assets/images/google_icon.png',
-                              width: 60,
-                              height: 60,
-                            ),
+                          Image.asset(
+                            'assets/images/google_icon.png',
+                            width: 60,
+                            height: 60,
                           ),
 
                           SizedBox(width: 8),
@@ -202,14 +238,14 @@ class LoginScreen extends ConsumerWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Create An Account",
+                            "I Already Have an Account",
                             style: TextStyle(
                               fontFamily: AppFonts.montserrat_regular,
                             ),
                           ),
                           SizedBox(width: 4),
                           Text(
-                            "Sign Up",
+                            "Login",
                             style: TextStyle(
                               fontFamily: AppFonts.montserrat_regular,
                               color: AppColors.vividPink,
