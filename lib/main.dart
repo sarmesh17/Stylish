@@ -1,10 +1,12 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:stylish/screens/auth/components/forgot_password.dart';
 import 'package:stylish/screens/auth/login_screen.dart';
-import 'package:stylish/screens/auth/signup_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   runApp(ProviderScope(child: const MyApp()));
 }
 
@@ -13,9 +15,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: ForgotPasswordScreen(),
-      debugShowCheckedModeBanner: false,
-    );
+    return MaterialApp(home: LoginScreen(), debugShowCheckedModeBanner: false);
   }
 }

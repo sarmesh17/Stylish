@@ -1,35 +1,39 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:logger/logger.dart';
 
 class AuthRepo {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
+  final logger = Logger();
 
   AuthRepo(this._firebaseAuth, this._googleSignIn);
 
   Stream<User?> get authState => _firebaseAuth.authStateChanges();
 
-  Future<String?> signIn(String email, String password) async {
+  Future<User?> signIn(String email, String password) async {
     try {
-      _firebaseAuth.signInWithEmailAndPassword(
+      final credential = await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-      return null;
+      return credential.user;
     } catch (e) {
-      return e.toString();
+      logger.d(e.toString());
+      return null;
     }
   }
 
-  Future<String?> signUp(String email, String password) async {
+  Future<User?> signUp(String email, String password) async {
     try {
-      _firebaseAuth.createUserWithEmailAndPassword(
+      final credential = await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-      return null;
+      return credential.user;
     } catch (e) {
-      return e.toString();
+      logger.e(e.toString());
+      return null;
     }
   }
 
