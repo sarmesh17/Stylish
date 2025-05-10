@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:stylish/screens/on_boarding_screen/on_boarding_screen.dart';
 import 'package:stylish/screens/on_boarding_screen/on_boarding_screen2.dart';
 import 'package:stylish/screens/on_boarding_screen/on_boarding_screen3.dart';
+import 'package:stylish/util/app_routes.dart';
 
 class PageViewIndicator extends ConsumerStatefulWidget {
   const PageViewIndicator({super.key});
@@ -76,8 +78,9 @@ class _PageViewIndicator extends ConsumerState<PageViewIndicator> {
                   maintainState: true,
                   child: TextButton(
                     onPressed: () {
-                      print('Get Started pressed');
-                      // TODO: Navigate
+
+                     context.go(AppRoutes.loginScreen);
+                     
                     },
                     child: Text(
                       'Get Started',

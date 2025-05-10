@@ -1,8 +1,28 @@
-import 'package:flutter/material.dart';
-import 'package:stylish/util/app_colors.dart';
+import 'dart:async';
 
-class SplashScreen extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:stylish/util/app_colors.dart';
+import 'package:stylish/util/app_routes.dart';
+
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    Timer(const Duration(seconds: 1), () {
+      if (mounted) {
+        context.go(AppRoutes.onBoardingScreens);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

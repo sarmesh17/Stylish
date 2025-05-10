@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:stylish/util/app_fonts.dart';
+import 'package:stylish/util/app_routes.dart';
 
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({super.key});
@@ -14,7 +16,9 @@ class OnBoardingScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 12.0),
             child: TextButton(
-              onPressed: () {},
+              onPressed: () {
+                context.go(AppRoutes.loginScreen);
+              },
               child: Text(
                 'Skip',
                 style: TextStyle(

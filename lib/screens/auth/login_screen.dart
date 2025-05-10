@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:stylish/providers/auth_provider/auth_provider.dart';
 import 'package:stylish/util/app_colors.dart';
 import 'package:stylish/util/app_fonts.dart';
+import 'package:stylish/util/app_routes.dart';
 
 final isVisibleProvider = StateProvider((ref) => false);
 
@@ -225,13 +227,18 @@ class LoginScreen extends ConsumerWidget {
                           ),
                         ),
                         SizedBox(width: 4),
-                        Text(
-                          "Sign Up",
-                          style: TextStyle(
-                            fontFamily: AppFonts.montserrat_regular,
-                            color: AppColors.vividPink,
-                            decoration: TextDecoration.underline,
-                            decorationColor: AppColors.vividPink,
+                        GestureDetector(
+                          onTap: (){
+                            context.go(AppRoutes.signupScreen);
+                          },
+                          child: Text(
+                            "Sign Up",
+                            style: TextStyle(
+                              fontFamily: AppFonts.montserrat_regular,
+                              color: AppColors.vividPink,
+                              decoration: TextDecoration.underline,
+                              decorationColor: AppColors.vividPink,
+                            ),
                           ),
                         ),
                       ],
