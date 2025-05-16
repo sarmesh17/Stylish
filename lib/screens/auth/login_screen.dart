@@ -40,10 +40,9 @@ class LoginScreen extends ConsumerWidget {
             TextField(
               controller: email,
               decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: 20.0,
-                ), // Increase vertical padding
+                contentPadding: EdgeInsets.symmetric(vertical: 20.0),
 
+                // Increase vertical padding
                 hintText: 'Username or Email',
                 filled: true,
                 fillColor: AppColors.grey,
@@ -139,10 +138,12 @@ class LoginScreen extends ConsumerWidget {
                 );
 
                 if (result != null) {
+                  context.go(AppRoutes.homeScreen);
+
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(
-                        "Login Successfull",
+                        "Login Successfully",
                         style: TextStyle(color: Colors.white),
                       ),
                       backgroundColor: Colors.green,
@@ -178,73 +179,78 @@ class LoginScreen extends ConsumerWidget {
             ),
 
             SizedBox(height: 60),
-            Expanded(
-              child: Center(
-                child: Column(
-                  children: [
-                    Text("- OR Continue with -"),
-                    SizedBox(height: 24),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            authState.signInWithGoogle();
-                          },
-                          child: Image.asset(
-                            'assets/images/google_icon.png',
-                            width: 60,
-                            height: 60,
-                          ),
+            Container(
+              alignment: Alignment.center,
+              child: Column(
+                children: [
+                  Text("- OR Continue with -"),
+                  SizedBox(height: 24),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          authState.signInWithGoogle();
+                        },
+                        child: Image.asset(
+                          'assets/images/google_icon.png',
+                          width: 60,
+                          height: 60,
                         ),
+                      ),
 
-                        SizedBox(width: 8),
+                      SizedBox(width: 8),
 
-                        Image.asset(
+                      GestureDetector(
+                        onTap: (){
+                          context.go(AppRoutes.homeScreen);
+
+                        },
+                        child: Image.asset(
                           'assets/images/apple_icon.png',
                           width: 60,
                           height: 60,
                         ),
+                      ),
 
-                        SizedBox(width: 8),
+                      SizedBox(width: 8),
 
-                        Image.asset(
-                          'assets/images/facebook_icon.png',
-                          width: 60,
-                          height: 60,
+                      Image.asset(
+                        'assets/images/facebook_icon.png',
+                        width: 60,
+                        height: 60,
+                      ),
+                    ],
+                  ),
+
+                  SizedBox(height: 26),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Create An Account",
+                        style: TextStyle(
+                          fontFamily: AppFonts.montserrat_regular,
                         ),
-                      ],
-                    ),
-
-                    SizedBox(height: 26),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Create An Account",
+                      ),
+                      SizedBox(width: 4),
+                      GestureDetector(
+                        onTap: () {
+                          context.go(AppRoutes.signupScreen);
+                        },
+                        child: Text(
+                          "Sign Up",
                           style: TextStyle(
                             fontFamily: AppFonts.montserrat_regular,
+                            color: AppColors.vividPink,
+                            decoration: TextDecoration.underline,
+                            decorationColor: AppColors.vividPink,
                           ),
                         ),
-                        SizedBox(width: 4),
-                        GestureDetector(
-                          onTap: (){
-                            context.go(AppRoutes.signupScreen);
-                          },
-                          child: Text(
-                            "Sign Up",
-                            style: TextStyle(
-                              fontFamily: AppFonts.montserrat_regular,
-                              color: AppColors.vividPink,
-                              decoration: TextDecoration.underline,
-                              decorationColor: AppColors.vividPink,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ],
