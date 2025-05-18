@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:stylish/models/product_model.dart';
 import 'package:stylish/screens/auth/login_screen.dart';
 import 'package:stylish/screens/auth/signup_screen.dart';
+import 'package:stylish/screens/checkout/checkout_screen.dart';
 import 'package:stylish/screens/detail_screen/detail_screen.dart';
 import 'package:stylish/screens/home_page/components/mens_accessories/mens_accessories.dart';
 import 'package:stylish/screens/home_page/components/mens_wear/mens_wear.dart';
@@ -73,6 +74,10 @@ final GoRouter router = GoRouter(
         return DetailScreen(product: product);
       },
     ),
+
+    GoRoute(path: AppRoutes.checkoutScreen, builder: (context,state){
+        return CheckOutScreen();
+    })
 
   ],
 );

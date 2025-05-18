@@ -88,6 +88,7 @@ class BottomNavigation extends ConsumerWidget {
               backgroundColor: AppColors.vividPink,
               onPressed: () {
                 ref.read(_selectedIndexProvider.notifier).state = 2;
+                context.push(AppRoutes.checkoutScreen);
               },
               child: const Icon(Icons.shopping_cart, color: Colors.white),
             ),

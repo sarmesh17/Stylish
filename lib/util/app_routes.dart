@@ -12,6 +12,7 @@ class AppRoutes {
   static const womensAccessoriesScreen='/womensAccessoriesScreen';
   static const mensAccessoriesScreen='/mensAccessoriesScreen';
   static const productDetailScreen='/ProductDetailScreen';
+  static const checkoutScreen="/checkoutScreen";
 
 }
 

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:stylish/models/product_model.dart';
+import 'package:stylish/providers/cart_provider/cart_provider.dart';
 import 'package:stylish/screens/detail_screen/components/image_slider.dart';
 import 'package:stylish/util/app_colors.dart';
 import 'package:stylish/util/app_fonts.dart';
+import 'package:stylish/util/app_routes.dart';
 
 class DetailScreen extends ConsumerWidget {
   final ProductModel product;
@@ -173,7 +176,15 @@ class DetailScreen extends ConsumerWidget {
             children: [
               Expanded(
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    ref.read(cartProvider.notifier).addProduct(product);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Product Added To Cart'),
+                        backgroundColor: Colors.green,
+                      ),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size(0, 50),
                     shape: RoundedRectangleBorder(
@@ -182,7 +193,7 @@ class DetailScreen extends ConsumerWidget {
                     backgroundColor: AppColors.vividPink,
                     foregroundColor: Colors.white,
                   ),
-                  child: Text('Go To Cart'),
+                  child: Text('Add To Cart'),
                 ),
               ),
               SizedBox(width: 16),
