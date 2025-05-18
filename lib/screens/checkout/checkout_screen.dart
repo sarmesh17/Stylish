@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:stylish/models/product_model.dart';
 import 'package:stylish/providers/cart_provider/cart_provider.dart';
 import 'package:stylish/providers/location/location_provider.dart';
 import 'package:stylish/util/app_colors.dart';
 import 'package:stylish/util/app_fonts.dart';
+import 'package:stylish/util/app_routes.dart';
 
 class CheckOutScreen extends ConsumerStatefulWidget {
   const CheckOutScreen({super.key});
@@ -32,7 +34,7 @@ class _CheckOutScreen extends ConsumerState<CheckOutScreen> {
         ),
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            context.pop();
           },
           icon: Icon(Icons.arrow_back_ios),
         ),
@@ -98,7 +100,7 @@ class _CheckOutScreen extends ConsumerState<CheckOutScreen> {
           // cart + total amount
           Column(
             children: [
-              ...cart.map((product) => buildCartItem(product)).toList(),
+              ...cart.map((product) => buildCartItem(product)),
 
               // Total Section
               Container(
@@ -127,7 +129,9 @@ class _CheckOutScreen extends ConsumerState<CheckOutScreen> {
           ),
 
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              showPaymentSuccessDialog(context);
+            },
             style: ElevatedButton.styleFrom(
               minimumSize: Size(double.infinity, 60),
               shape: RoundedRectangleBorder(
@@ -249,6 +253,49 @@ class _CheckOutScreen extends ConsumerState<CheckOutScreen> {
           ),
         ],
       ),
+    );
+  }
+
+  void showPaymentSuccessDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          backgroundColor: Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // Pink circle with checkmark
+                Container(
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: AppColors.vividPink,
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(Icons.check, size: 40, color: Colors.white),
+                ),
+                const SizedBox(height: 20),
+
+                // Success text
+                const Text(
+                  'Payment done successfully.',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black87,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

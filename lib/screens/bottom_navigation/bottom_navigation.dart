@@ -4,22 +4,21 @@ import 'package:go_router/go_router.dart';
 import 'package:stylish/util/app_colors.dart';
 import 'package:stylish/util/app_routes.dart';
 
-final _selectedIndexProvider = StateProvider<int>((ref) => 0);
+final selectedIndexProvider = StateProvider<int>((ref) => 0);
 
 class BottomNavigation extends ConsumerWidget {
   const BottomNavigation({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedIndex = ref.watch(_selectedIndexProvider);
+    final selectedIndex = ref.watch(selectedIndexProvider);
 
     return SizedBox(
-      height: 90, // enough space to show both FAB and nav bar
+      height: 90,
       child: Stack(
         clipBehavior: Clip.none,
         alignment: Alignment.bottomCenter,
         children: [
-          // 1️⃣ BottomAppBar goes first (in the back)
           Positioned(
             bottom: 0,
             left: 0,
@@ -36,42 +35,46 @@ class BottomNavigation extends ConsumerWidget {
                     Row(
                       children: [
                         _buildNavItem(
-                          Icons.home,
-                          'Home',
-                          0,
-                          selectedIndex,
-                          ref,
-                          context
+                          context: context,
+                          ref: ref,
+                          icon: Icons.home,
+                          label: 'Home',
+                          index: 0,
+                          selectedIndex: selectedIndex,
+                          route: AppRoutes.homeScreen,
                         ),
                         const SizedBox(width: 30),
                         _buildNavItem(
-                          Icons.favorite_border,
-                          'Wishlist',
-                          1,
-                          selectedIndex,
-                          ref,
-                          context
+                          context: context,
+                          ref: ref,
+                          icon: Icons.favorite_border,
+                          label: 'Wishlist',
+                          index: 1,
+                          selectedIndex: selectedIndex,
+                          route: AppRoutes.wishListScreen,
                         ),
                       ],
                     ),
                     Row(
                       children: [
                         _buildNavItem(
-                          Icons.search,
-                          'Search',
-                          3,
-                          selectedIndex,
-                          ref,
-                          context
+                          context: context,
+                          ref: ref,
+                          icon: Icons.search,
+                          label: 'Search',
+                          index: 3,
+                          selectedIndex: selectedIndex,
+                          route: AppRoutes.searchScreen,
                         ),
                         const SizedBox(width: 30),
                         _buildNavItem(
-                          Icons.settings,
-                          'Setting',
-                          4,
-                          selectedIndex,
-                          ref,
-                          context
+                          context: context,
+                          ref: ref,
+                          icon: Icons.settings,
+                          label: 'Setting',
+                          index: 4,
+                          selectedIndex: selectedIndex,
+                          route: AppRoutes.settingsScreen,
                         ),
                       ],
                     ),
@@ -80,14 +83,12 @@ class BottomNavigation extends ConsumerWidget {
               ),
             ),
           ),
-
-          // 2️⃣ FAB on top
           Positioned(
             top: -25,
             child: FloatingActionButton(
               backgroundColor: AppColors.vividPink,
               onPressed: () {
-                ref.read(_selectedIndexProvider.notifier).state = 2;
+                ref.read(selectedIndexProvider.notifier).state = 2;
                 context.push(AppRoutes.checkoutScreen);
               },
               child: const Icon(Icons.shopping_cart, color: Colors.white),
@@ -98,18 +99,20 @@ class BottomNavigation extends ConsumerWidget {
     );
   }
 
-  Widget _buildNavItem(
-    IconData icon,
-    String label,
-    int index,
-    int selectedIndex,
-    WidgetRef ref,
-    BuildContext context,
-  ) {
+  Widget _buildNavItem({
+    required BuildContext context,
+    required WidgetRef ref,
+    required IconData icon,
+    required String label,
+    required int index,
+    required int selectedIndex,
+    required String route,
+  }) {
     final isSelected = selectedIndex == index;
     return InkWell(
       onTap: () {
-        ref.read(_selectedIndexProvider.notifier).state = index;
+        ref.read(selectedIndexProvider.notifier).state = index;
+        context.push(route);
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -117,16 +120,9 @@ class BottomNavigation extends ConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            GestureDetector(
-              onTap: () {
-                if (selectedIndex == 0) {
-                  context.push(AppRoutes.homeScreen);
-                }
-              },
-              child: Icon(
-                icon,
-                color: isSelected ? AppColors.vividPink : Colors.black,
-              ),
+            Icon(
+              icon,
+              color: isSelected ? AppColors.vividPink : Colors.black,
             ),
             Text(
               label,

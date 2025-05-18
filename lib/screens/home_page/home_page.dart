@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:stylish/screens/bottom_navigation/bottom_navigation.dart';
 import 'package:stylish/screens/home_page/components/app_bar.dart';
 import 'package:stylish/screens/home_page/components/category.dart';
 import 'package:stylish/screens/home_page/components/search_bar.dart';
@@ -19,7 +18,7 @@ class HomePage extends ConsumerWidget {
         child: ListView(
           padding: EdgeInsets.symmetric(horizontal: 16),
           children: [
-            CustomAppBar(title: "Stylish",),
+            CustomAppBar(title: "Stylish"),
             CustomSearchBar(),
             SizedBox(height: 24),
             Category(),
@@ -31,14 +30,12 @@ class HomePage extends ConsumerWidget {
                 'mens-watches',
                 'womens-jewellery',
                 'womens-watches',
-                'skin-care'
+                'skin-care',
               ],
             ),
           ],
         ),
       ),
-
-      bottomNavigationBar: BottomNavigation(),
     );
   }
 }

@@ -118,11 +118,16 @@ class LoginScreen extends ConsumerWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text(
-                  "Forgot Password?",
-                  style: TextStyle(
-                    fontFamily: AppFonts.montserrat_regular,
-                    color: Colors.redAccent,
+                InkWell(
+                  onTap: () {
+                    context.go(AppRoutes.forgotScreen);
+                  },
+                  child: Text(
+                    "Forgot Password?",
+                    style: TextStyle(
+                      fontFamily: AppFonts.montserrat_regular,
+                      color: Colors.redAccent,
+                    ),
                   ),
                 ),
               ],
@@ -202,9 +207,8 @@ class LoginScreen extends ConsumerWidget {
                       SizedBox(width: 8),
 
                       GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           context.go(AppRoutes.homeScreen);
-
                         },
                         child: Image.asset(
                           'assets/images/apple_icon.png',

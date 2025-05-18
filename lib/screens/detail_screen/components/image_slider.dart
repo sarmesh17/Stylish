@@ -22,19 +22,10 @@ class _ImageSliderState extends ConsumerState<ImageSlider> {
     _controller = PageController();
   }
 
-  void _nextPage() {
-    final images = widget.product.images ?? [];
-    final currentPage = ref.read(_currentPageProvider);
-
-    if (currentPage < images.length - 1) {
-      _controller.nextPage(duration: Duration(milliseconds: 300), curve: Curves.easeIn);
-      ref.read(_currentPageProvider.notifier).state = currentPage + 1;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
-    final currentPage = ref.watch(_currentPageProvider);
+    ref.watch(_currentPageProvider);
     final images = widget.product.images ?? [];
 
     return Center(

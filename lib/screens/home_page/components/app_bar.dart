@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stylish/util/app_fonts.dart';
 
+// ignore: must_be_immutable
 class CustomAppBar extends StatelessWidget {
   String title;
    CustomAppBar({super.key, required this.title});

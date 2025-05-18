@@ -51,4 +51,10 @@ class AuthRepo {
 
     return await _firebaseAuth.signInWithCredential(credential);
   }
+
+  void signOut(){
+    
+    _firebaseAuth.signOut();
+
+  }
 }

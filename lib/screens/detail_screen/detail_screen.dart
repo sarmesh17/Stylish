@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:stylish/models/product_model.dart';
 import 'package:stylish/providers/cart_provider/cart_provider.dart';
 import 'package:stylish/screens/detail_screen/components/image_slider.dart';
 import 'package:stylish/util/app_colors.dart';
 import 'package:stylish/util/app_fonts.dart';
-import 'package:stylish/util/app_routes.dart';
 
 class DetailScreen extends ConsumerWidget {
   final ProductModel product;
@@ -55,7 +53,7 @@ class DetailScreen extends ConsumerWidget {
             padding: const EdgeInsets.symmetric(vertical: 4),
             child: Row(
               children: List.generate(5, (index) {
-                double rating = product?.rating ?? 0;
+                double rating = product.rating ?? 0;
                 if (index < rating.floor()) {
                   return const Icon(Icons.star, color: Colors.amber, size: 16);
                 } else if (index < rating && rating - index >= 0.5) {
@@ -82,7 +80,7 @@ class DetailScreen extends ConsumerWidget {
               children: [
                 // Discounted Price
                 Text(
-                  "₹${(product!.price! * (1 - (product.discountPercentage! / 100))).toStringAsFixed(0)}",
+                  "₹${(product.price! * (1 - (product.discountPercentage! / 100))).toStringAsFixed(0)}",
                   style: const TextStyle(
                     color: Colors.green,
                     fontFamily: AppFonts.montserrat_Medium,
