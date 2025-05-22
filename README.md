@@ -53,4 +53,4 @@ Screenshots are available in the `screenshots/` directory. Here's a preview:
 
 ## 🧑‍💻 Author
 
-Developed with ❤️ by [Your Name](https://www.linkedin.com/in/yourprofile)
+Developed with ❤️ by  Sarmesh Kalwar
