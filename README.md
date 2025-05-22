@@ -1,16 +1,52 @@
-# stylish
 
-A new Flutter project.
+# 🛍️ Stylish – Flutter E-commerce App
 
-## Getting Started
+A beautiful and fully functional **multiplatform e-commerce app** built using **Flutter**, with complete backend integration and user authentication via **Firebase**.
 
-This project is a starting point for a Flutter application.
+<p align="center">
+  <img src="screenshots/screen1.png" width="250"/>
+  <img src="screenshots/screen2.png" width="250"/>
+  <img src="screenshots/screen3.png" width="250"/>
+</p>
 
-A few resources to get you started if this is your first Flutter project:
+## ✨ Features
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- 🔐 **Firebase Authentication** (Email/Password)
+- 🧠 **Firebase Realtime Database** for storing user info
+- 📦 **Product listing** powered by [DummyJSON API](https://dummyjson.com/)
+- 📱 Beautiful and responsive **UI design**
+- 🔁 Seamless navigation and intuitive user experience
+- 🧩 Designed for scalability and clean code architecture
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🚀 Getting Started
+
+Clone the repository:
+
+\`\`\`bash
+git clone https://github.com/yourusername/stylish.git
+cd stylish
+flutter pub get
+flutter run
+\`\`\`
+
+## 🛠️ Tech Stack
+
+- **Flutter**
+- **Firebase Authentication**
+- **Firebase Realtime Database**
+- **Provider / Riverpod / BLoC** (mention state management if used)
+- **REST API** integration (DummyJSON)
+
+## 📸 Screenshots
+
+Screenshots are available in the `screenshots/` directory. Here's a preview:
+
+<p align="center">
+  <img src="screenshots/screen1.png" width="200"/>
+  <img src="screenshots/screen2.png" width="200"/>
+  <img src="screenshots/screen3.png" width="200"/>
+</p>
+
+## 🧑‍💻 Author
+
+Developed with ❤️ by [Your Name](https://www.linkedin.com/in/yourprofile)
