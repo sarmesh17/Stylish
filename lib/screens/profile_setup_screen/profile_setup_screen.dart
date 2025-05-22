@@ -540,6 +540,16 @@ class _ProfileScreenState extends ConsumerState<ProfileSetupScreen> {
 
                     await profileSetupRepo.saveUserDetails(user);
 
+                    ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              backgroundColor: Colors.green,
+                              content: Text(
+                                "Signup successfull",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          );
+
                     // 🔁 Then navigate
                     context.go(AppRoutes.loginScreen);
                   },
