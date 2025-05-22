@@ -7,6 +7,7 @@ import 'package:stylish/util/app_fonts.dart';
 import 'package:stylish/util/app_routes.dart';
 
 final isVisibleProvider = StateProvider((ref) => false);
+final obscureTextProvider = StateProvider((ref) => true);
 
 class SignupScreen extends ConsumerWidget {
   final email = TextEditingController();
@@ -19,6 +20,7 @@ class SignupScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     var isVisible = ref.watch(isVisibleProvider);
     final authState = ref.watch(authRepoProvider);
+    var obscure = ref.watch(obscureTextProvider);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -89,6 +91,8 @@ class SignupScreen extends ConsumerWidget {
                     // password text-field
                     TextField(
                       controller: password,
+                      obscureText: obscure,
+
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.symmetric(vertical: 20.0),
                         hintText: 'Password',
@@ -117,6 +121,9 @@ class SignupScreen extends ConsumerWidget {
                             isVisible =
                                 ref.read(isVisibleProvider.notifier).state =
                                     !isVisible;
+                            obscure =
+                                ref.read(obscureTextProvider.notifier).state =
+                                    !obscure;
                           },
                           icon: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -138,6 +145,7 @@ class SignupScreen extends ConsumerWidget {
                     // confirm-password text-field
                     TextField(
                       controller: confirmPassword,
+                      obscureText: obscure,
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.symmetric(vertical: 20.0),
                         hintText: 'ConfirmPassword',
@@ -166,6 +174,9 @@ class SignupScreen extends ConsumerWidget {
                             isVisible =
                                 ref.read(isVisibleProvider.notifier).state =
                                     !isVisible;
+                            obscure =
+                                ref.read(obscureTextProvider.notifier).state =
+                                    !obscure;
                           },
                           icon: Padding(
                             padding: const EdgeInsets.all(8.0),

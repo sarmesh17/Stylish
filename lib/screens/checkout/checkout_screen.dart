@@ -6,7 +6,6 @@ import 'package:stylish/providers/cart_provider/cart_provider.dart';
 import 'package:stylish/providers/location/location_provider.dart';
 import 'package:stylish/util/app_colors.dart';
 import 'package:stylish/util/app_fonts.dart';
-import 'package:stylish/util/app_routes.dart';
 
 class CheckOutScreen extends ConsumerStatefulWidget {
   const CheckOutScreen({super.key});

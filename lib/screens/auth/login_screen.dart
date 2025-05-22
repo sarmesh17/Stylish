@@ -7,6 +7,7 @@ import 'package:stylish/util/app_fonts.dart';
 import 'package:stylish/util/app_routes.dart';
 
 final isVisibleProvider = StateProvider((ref) => false);
+final obscureTextProvider = StateProvider((ref) => true);
 
 class LoginScreen extends ConsumerWidget {
   LoginScreen({super.key});
@@ -17,6 +18,7 @@ class LoginScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var isVisible = ref.watch(isVisibleProvider);
+    var obscure = ref.watch(obscureTextProvider);
     final authState = ref.watch(authRepoProvider);
 
     return Scaffold(
@@ -71,6 +73,7 @@ class LoginScreen extends ConsumerWidget {
             // password text-field
             TextField(
               controller: password,
+              obscureText: obscure,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.symmetric(vertical: 20.0),
                 hintText: 'Password',
@@ -98,6 +101,8 @@ class LoginScreen extends ConsumerWidget {
                   onPressed: () {
                     isVisible =
                         ref.read(isVisibleProvider.notifier).state = !isVisible;
+                    obscure =
+                        ref.read(obscureTextProvider.notifier).state = !obscure;
                   },
                   icon: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -240,7 +245,7 @@ class LoginScreen extends ConsumerWidget {
                       SizedBox(width: 4),
                       GestureDetector(
                         onTap: () {
-                          context.go(AppRoutes.signupScreen);
+                          context.go(AppRoutes.profileSetupScreen);
                         },
                         child: Text(
                           "Sign Up",

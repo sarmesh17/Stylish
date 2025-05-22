@@ -1,3 +1,4 @@
+
 class AppRoutes {
   static const splashScreen = '/';
   static const onBoardingScreens = '/onBoardingScreen';
@@ -13,6 +14,8 @@ class AppRoutes {
   static const wishListScreen = "/wishListScreen";
   static const searchScreen = "/searchScreen";
   static const settingsScreen = "/settingsScreen";
-    static const forgotScreen = "/forgotScreen";
+  static const forgotScreen = "/forgotScreen";
+  static const profileSetupScreen = "/profileSetupScreen";
+
 
 }

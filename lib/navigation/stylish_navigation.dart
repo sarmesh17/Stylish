@@ -14,6 +14,7 @@ import 'package:stylish/screens/home_page/components/womens_wears/womens_wear.da
 import 'package:stylish/screens/home_page/home_page.dart';
 import 'package:stylish/screens/on_boarding_screen/components/page_view_indicator.dart';
 import 'package:stylish/screens/profile_screen/profile_screen.dart';
+import 'package:stylish/screens/profile_setup_screen/profile_setup_screen.dart';
 import 'package:stylish/screens/search_screen/search_screen.dart';
 import 'package:stylish/screens/splash_screen/splash_screen.dart';
 import 'package:stylish/screens/wishlistscreen/wishlist_screen.dart';
@@ -64,7 +65,7 @@ final GoRouter router = GoRouter(
 
         GoRoute(
           path: AppRoutes.settingsScreen,
-          builder: (context, state) => ProfileScreen(),
+          builder: (context, state) => UserProfileScreen(),
         ),
       ],
     ),
@@ -108,12 +109,17 @@ final GoRouter router = GoRouter(
 
     GoRoute(
       path: AppRoutes.settingsScreen,
-      builder: (context, state) => ProfileScreen(),
+      builder: (context, state) => UserProfileScreen(),
     ),
 
     GoRoute(
       path: AppRoutes.forgotScreen,
       builder: (context, state) => ForgotPasswordScreen(),
+    ),
+
+    GoRoute(
+      path: AppRoutes.profileSetupScreen,
+      builder: (context, state) => ProfileSetupScreen(),
     ),
   ],
 );
