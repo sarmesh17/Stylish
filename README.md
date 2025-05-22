@@ -41,15 +41,6 @@ flutter run
 - **Provider / Riverpod / BLoC** (mention state management if used)
 - **REST API** integration (DummyJSON)
 
-## 📸 Screenshots
-
-Screenshots are available in the `screenshots/` directory. Here's a preview:
-
-<p align="center">
-  <img src="screenshots/screen1.png" width="200"/>
-  <img src="screenshots/screen2.png" width="200"/>
-  <img src="screenshots/screen3.png" width="200"/>
-</p>
 
 ## 🧑‍💻 Author
 
